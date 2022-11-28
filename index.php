@@ -13,8 +13,7 @@
 
 <body>
     <button class="gerarPersonagem">click</button>
-    <button class="a">click</button>
-    <img src="" alt="" id="loading">
+    <img src="img/loading.gif" alt="Carregando" id="loading">
 
     <div class="mb-3">
         <label for="exampleFormControlInput1" class="form-label">Personagem:</label>
@@ -41,6 +40,69 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
 </script>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+    $("#loading").hide();
+    $(document).ajaxStart(function() {
+        $("#loading").show();
+    }).ajaxStop(function() {
+        $("#loading").hide();
+    });
 
+    $(document).on("click", ".gerarPersonagem", function() {
+
+        var url = "https://animechan.vercel.app/api/random";
+        $.ajax({
+            url: url,
+            dataType: "json",
+            type: "GET",
+            success: function(dados) {
+                if (dados) {
+                    var noteEnglish = dados.quote;
+                    var urlTradutor =
+                        "https://api.mymemory.translated.net/get?q=" + noteEnglish +
+                        "&langpair=en|pt";
+                    $.ajax({
+
+                        url: urlTradutor,
+                        dataType: "json",
+                        type: "GET",
+
+                        success: function(dados) {
+
+                            if (dados) {
+                                var resultadoTraduzido = dados.responseData
+                                    .translatedText;
+                                $("#quotePT").val(resultadoTraduzido);
+                                console.log(dados);
+                            } else {
+                                alert("ERRO Não Encontrado");
+                                $("#quotePT").val("");
+                            }
+                        },
+                    });
+                    console.log(dados);
+                    $("#anime").val(dados.anime);
+                    $("#character").val(dados.character);
+                    $("#quoteENG").val(dados.quote);
+
+                } else {
+                    alert("ERRO Não Encontrado");
+                    $("#anime").val("");
+                    $("#character").val("");
+                    $("#quoteENG").val("");
+                    $("#quotePT").val("");
+                }
+            },
+        });
+
+    });
+
+
+
+});
+</script>
 
 </html>
