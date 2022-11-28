@@ -1,5 +1,5 @@
 
-<h1 align="center"> animeRandom </h1>
+<h1 align="center"> animeDash </h1>
 
 <p align="center">Site Web que escolhe aleatoriamente um personagem de anime e retorna seu Nome, Anime e uma Frase | Nota Impactante</p>
 
