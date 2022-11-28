@@ -5,35 +5,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <title>Document</title>
+    <title>AnimeDash</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
+
+<nav class="navbar bg-light">
+    <div class="container" style="text-align:center">
+        <span class="navbar-text m-auto">
+            <strong>ANIMEDASH</strong>
+        </span>
+    </div>
+</nav>
+
 <body>
-    <button class="gerarPersonagem">click</button>
-    <img src="img/loading.gif" alt="Carregando" id="loading">
 
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Personagem:</label>
-        <input type="text" class="form-control" id="anime" placeholder="Personagem" readonly>
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Anime:</label>
-        <input type="text" class="form-control" id="character" placeholder="Anime" readonly>
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Nota:</label>
-        <textarea class="form-control" id="quotePT" rows="3" readonly></textarea>
-    </div>
-    <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Nota Original:</label>
-        <textarea class="form-control" id="quoteENG" rows="3" readonly></textarea>
+    <div class="container" style="text-align:center">
+        <button type="button" class="btn btn-outline-success gerarPersonagem">Gerar</button>
+        <button type="button" class="btn btn-outline-warning limpar">Limpar</button>
     </div>
 
+    <div class="container" style="text-align:center"><img src="img/loading.gif" alt="Carregando" id="loading"></div>
+
+
+    <div class="container">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Personagem:</label>
+            <input type="text" class="form-control" id="anime" placeholder="Personagem" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Anime:</label>
+            <input type="text" class="form-control" id="character" placeholder="Anime" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Nota:</label>
+            <textarea class="form-control" id="quotePT" rows="3" placeholder="Nota Traduzida" readonly></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Nota Original:</label>
+            <textarea class="form-control" id="quoteENG" rows="3" placeholder="Nota Original" readonly></textarea>
+        </div>
+    </div>
 
 </body>
+
+<footer>
+    <div class="container">
+        <footer class="py-3 my-4">
+            <p class="text-center text-muted">© Copyright 2004-2022 by AnimeDash. All Rights Reserved.</p>
+        </footer>
+    </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 </script>
@@ -98,6 +123,12 @@ $(document).ready(function() {
             },
         });
 
+    });
+    $(document).on("click", ".limpar", function() {
+        $("#anime").val("");
+        $("#character").val("");
+        $("#quoteENG").val("");
+        $("#quotePT").val("");
     });
 
 
