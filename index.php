@@ -9,27 +9,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <title>AnimeDash</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 
 <nav class="navbar bg-light">
-    <div class="container" style="text-align:center">
+
+    <div class="container center">
         <span class="navbar-text m-auto">
             <strong>ANIMEDASH</strong>
         </span>
     </div>
+
 </nav>
 
 <body>
 
-    <div class="container" style="text-align:center">
+    <div class="container" id="containerButtons">
         <button type="button" class="btn btn-outline-success gerarPersonagem">Gerar</button>
         <button type="button" class="btn btn-outline-warning limpar">Limpar</button>
     </div>
 
-    <div class="container" style="text-align:center"><img src="img/loading.gif" alt="Carregando" id="loading"></div>
-
+    <div class="container center">
+        <img src="img/loading.gif" alt="Carregando" id="loading">
+    </div>
 
     <div class="container">
         <div class="mb-3">
@@ -52,13 +55,14 @@
 
 </body>
 
-<footer>
-    <div class="container">
-        <footer class="py-3 my-4">
-            <p class="text-center text-muted">© Copyright 2004-2022 by AnimeDash. All Rights Reserved.</p>
-        </footer>
-    </div>
-</footer>
+
+<div class="container">
+    <footer class="py-3 my-4">
+        <p class="text-center text-muted">© Copyright 2004-2022 by AnimeDash. All Rights Reserved.</p>
+    </footer>
+</div>
+
+
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 </script>
@@ -67,73 +71,6 @@
 </script>
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
     crossorigin="anonymous"></script>
-<script>
-$(document).ready(function() {
-    $("#loading").hide();
-    $(document).ajaxStart(function() {
-        $("#loading").show();
-    }).ajaxStop(function() {
-        $("#loading").hide();
-    });
-
-    $(document).on("click", ".gerarPersonagem", function() {
-
-        var url = "https://animechan.vercel.app/api/random";
-        $.ajax({
-            url: url,
-            dataType: "json",
-            type: "GET",
-            success: function(dados) {
-                if (dados) {
-                    var noteEnglish = dados.quote;
-                    var urlTradutor =
-                        "https://api.mymemory.translated.net/get?q=" + noteEnglish +
-                        "&langpair=en|pt";
-                    $.ajax({
-
-                        url: urlTradutor,
-                        dataType: "json",
-                        type: "GET",
-
-                        success: function(dados) {
-
-                            if (dados) {
-                                var resultadoTraduzido = dados.responseData
-                                    .translatedText;
-                                $("#quotePT").val(resultadoTraduzido);
-                                console.log(dados);
-                            } else {
-                                alert("ERRO Não Encontrado");
-                                $("#quotePT").val("");
-                            }
-                        },
-                    });
-                    console.log(dados);
-                    $("#anime").val(dados.anime);
-                    $("#character").val(dados.character);
-                    $("#quoteENG").val(dados.quote);
-
-                } else {
-                    alert("ERRO Não Encontrado");
-                    $("#anime").val("");
-                    $("#character").val("");
-                    $("#quoteENG").val("");
-                    $("#quotePT").val("");
-                }
-            },
-        });
-
-    });
-    $(document).on("click", ".limpar", function() {
-        $("#anime").val("");
-        $("#character").val("");
-        $("#quoteENG").val("");
-        $("#quotePT").val("");
-    });
-
-
-
-});
-</script>
+<script src="js/apis.js"></script>
 
 </html>
