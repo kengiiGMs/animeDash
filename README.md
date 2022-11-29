@@ -1,7 +1,7 @@
 
 <h1 align="center"> animeDash </h1>
 
-<p align="center">Site Web que escolhe aleatoriamente um personagem de anime e retorna seu Nome, Anime e uma Frase | Nota Impactante</p>
+<p align="center">Site Web que escolhe aleatoriamente um personagem de anime e retorna seu Nome, Anime e uma Frase | Nota</p>
 
 ## Ajustes e melhorias
 
